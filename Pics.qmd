@@ -1,0 +1,31 @@
+---
+title: "Photo Gallery"
+format: html
+---
+
+# Photo Gallery
+
+This is a collection of some of my favorite photos. Click on any image to view it in full size.
+
+```{r, echo=FALSE}
+library(htmltools)
+
+# List of image files (replace with your actual file names)
+image_files <- c("pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg")
+
+# Function to create an image card
+create_image_card <- function(img_file) {
+  tags$div(
+    class = "image-card",
+    tags$a(
+      href = img_file, 
+      tags$img(src = img_file, class = "img-thumbnail", style = "width:100%")
+    )
+  )
+}
+
+# Generate the gallery
+gallery <- lapply(image_files, create_image_card)
+
+# Display the gallery in a grid
+tags$div(class = "gallery-grid", gallery)
